@@ -1,4 +1,4 @@
-# video-stream-ascii
+# video-stream-ascii-reader
 
 <p align="center">
     <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascriptLogo" style="height:50px;">
@@ -12,16 +12,14 @@
 
 This is a simple web demo of the `video-stream-ascii` package that converts a video stream into ASCII art.
 
-## 🚀🚀 [You can try it out](https://im-rises.github.io/video-stream-ascii-website/) 🚀🚀
+## 🚀🚀 [You can try it out](https://im-rises.github.io/video-stream-ascii-reader/) 🚀🚀
 
-It works on desktop and mobile as well, the example use the camera of your device and convert the video stream into
+It works on desktop and mobile as well, the example take an input video and convert its video stream into
 ASCII art in real time. The output is real text, so you can copy and paste it directly.
 
 ## 🚀🚀 [The package is published on npm](https://www.npmjs.com/package/video-stream-ascii) 🚀🚀
 
 The installation and usage of the package is explained in the package's README.
-
-The example is using the webcam of your device, but you can use any video stream, like a video file or a video stream.
 
 ## Screenshots
 
