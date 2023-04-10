@@ -56,10 +56,10 @@ The project is also set up to use ESLint.
 
 ## GitHub Actions
 
-[![pages-build-deployment](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/pages/pages-build-deployment)
-[![Node.js CI](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/node.js.yml)
-[![ESLint](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/eslint.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/eslint.yml)
-[![CodeQL](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-website/actions/workflows/codeql.yml)
+[![pages-build-deployment](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/pages/pages-build-deployment)
+[![Node.js CI](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/node.js.yml)
+[![ESLint](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/eslint.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/eslint.yml)
+[![CodeQL](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/Im-Rises/video-stream-ascii-reader/actions/workflows/codeql.yml)
 
 The project is set up to run the following actions:
 
@@ -106,4 +106,4 @@ Quentin MOREL :
 - @Im-Rises
 - <https://github.com/Im-Rises>
 
-[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/video-stream-ascii-website)](https://github.com/Im-Rises/video-stream-ascii-website/graphs/contributors)
+[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/video-stream-ascii-reader)](https://github.com/Im-Rises/video-stream-ascii-reader/graphs/contributors)
