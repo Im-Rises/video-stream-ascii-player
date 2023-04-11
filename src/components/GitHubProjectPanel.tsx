@@ -1,5 +1,5 @@
 import React from 'react';
-import './GitHubProjectPanel.css';
+import './GitHubProjectPanel.scss';
 
 type Params = {
 	link: string;

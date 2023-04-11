@@ -21,6 +21,12 @@ ASCII art in real time. The output is real text, so you can copy and paste it di
 
 The installation and usage of the package is explained in the package's README.
 
+## TODO
+
+- [ ] Allow to load video from URL
+- [x] Allow to load video from file
+- [ ] Add a way to change the resolution of the output
+
 ## Screenshots
 
 <img src="https://user-images.githubusercontent.com/59691442/209728294-e10691da-eb4f-43e6-880c-522417da79c6.png" alt="screenshot" style="width: 100%;">
