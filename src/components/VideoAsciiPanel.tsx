@@ -78,7 +78,7 @@ export const VideoAsciiPanel: React.FC = () => {
 							console.log('New video cursor', videoRef.current?.currentTime);
 						}}
 						onTimeUpdate={() => {
-							setCurrentTime(videoRef.current?.currentTime || 0);
+							setCurrentTime(videoRef.current?.currentTime ?? 0);
 						}}
 					/>
 				</div>
