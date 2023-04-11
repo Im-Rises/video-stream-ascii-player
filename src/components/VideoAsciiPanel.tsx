@@ -80,6 +80,7 @@ export const VideoAsciiPanel: React.FC = () => {
 						onTimeUpdate={() => {
 							setCurrentTime(videoRef.current?.currentTime ?? 0);
 						}}
+						autoPlay={true}
 					/>
 				</div>
 			)}
@@ -128,6 +129,13 @@ export const VideoAsciiPanel: React.FC = () => {
 										}}
 									/>
 									<label className='checkbox-label'>Loop</label>
+									<input type={'checkbox'} className={'custom-checkbox'} checked={autoReplay}
+										onChange={() => {
+											videoRef.current!.muted = !videoRef.current!.muted;
+										}}
+									/>
+									<label className='checkbox-label'>Mute</label>
+
 									{/* </div> */}
 									{/* <select onChange={e => { */}
 									{/*	const value = parseInt(e.target.value, 10); */}
