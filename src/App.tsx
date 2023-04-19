@@ -6,8 +6,8 @@ import {VideoAsciiPanel} from './components/VideoAsciiPanel';
 
 const App = () => (
 	<div className='App'>
-		<GitHubProjectPanel link={GITHUB_URL}
-			linkText={GITHUB_LINK_TEXT}/>
+		{/* <GitHubProjectPanel link={GITHUB_URL} */}
+		{/* linkText={GITHUB_LINK_TEXT}/> */}
 		<VideoAsciiPanel/>
 	</div>
 );
