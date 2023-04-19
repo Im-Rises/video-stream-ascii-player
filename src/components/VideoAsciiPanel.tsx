@@ -6,6 +6,7 @@ import {VideoHandler} from './VideoHandler';
 
 export const VideoAsciiPanel: React.FC = () => {
 	const divVideoAsciiParentRef = useRef<HTMLDivElement>(null);
+	const preTagRef = useRef<HTMLPreElement>(null);
 
 	// Video settings
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,8 +26,19 @@ export const VideoAsciiPanel: React.FC = () => {
 		console.log('Video ready');
 	};
 
+	// On video time update
 	const onTimeUpdate = () => {
 		setCurrentTime(videoRef.current?.currentTime ?? 0);
+	};
+
+	// Handle the copy to clipboard button click
+	const copyToClipboard = async (text: string) => {
+		try {
+			await navigator.clipboard.writeText(text);
+			console.log('Text copied to clipboard');
+		} catch (err: unknown) {
+			console.error('Failed to copy text: ', err);
+		}
 	};
 
 	return (
@@ -35,27 +47,38 @@ export const VideoAsciiPanel: React.FC = () => {
 				<div>
 					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} onTimeUpdate={onTimeUpdate}/>
 					<div ref={divVideoAsciiParentRef} className={'video-ascii-panel'}>
-						{isVideoReady
-                            && (
-                            	<div>
-                            		<div>
-                            			<VideoAscii videoStreaming={videoRef.current!}
-                            				parentRef={divVideoAsciiParentRef}
-                            				charsPerLine={charsPerLine}
-                            				charsPerColumn={charsPerColumn}
-                            				fontColor={'white'}
-                            				backgroundColor={'black'}
-                            				useColor={useColor}/>
-                            		</div>
-                            		<div>
-                            			<VideoController videoRef={videoRef}/>
-                            		</div>
-                            		<button onClick={() => {
-                            			setUseColor(!useColor);
-                            		}}>Toggle color
-                            		</button>
-                            	</div>
-                            )
+						{isVideoReady && (
+							<div>
+								<div>
+									<VideoAscii videoStreaming={videoRef.current!}
+										parentRef={divVideoAsciiParentRef}
+										charsPerLine={charsPerLine}
+										charsPerColumn={charsPerColumn}
+										fontColor={'white'}
+										backgroundColor={'black'}
+										useColor={useColor}
+										preTagRef={preTagRef}
+									/>
+								</div>
+								<div>
+									<VideoController videoRef={videoRef}/>
+								</div>
+								<button className={'video-button-color'} onClick={() => {
+									setUseColor(!useColor);
+								}}>Toggle color
+								</button>
+								<button className={'video-button-copy'}
+									onClick={async () => copyToClipboard(preTagRef.current!.innerText)}>Copy
+								</button>
+								{/* <button onClick={() => { */}
+								{/*	videoRef.current!.pause(); */}
+								{/*	setIsVideoReady(false); */}
+								{/*	videoRef.current!.src = ''; */}
+								{/* } */}
+								{/* }>Change video */}
+								{/* </button> */}
+							</div>
+						)
 						}
 					</div>
 				</div>
@@ -63,4 +86,3 @@ export const VideoAsciiPanel: React.FC = () => {
 		</div>
 	);
 };
-

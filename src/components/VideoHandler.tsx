@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './VideoHandler.scss';
 
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
@@ -20,7 +21,7 @@ export const VideoHandler = (props: Props) => {
 
 	return (
 		<>
-			{videoUrl && (
+			{videoUrl ? (
 				<div>
 					<video ref={props.videoRef} src={videoUrl}
 						style={{width: 0, height: 0, position: 'absolute', top: 0, left: 0}}
@@ -50,8 +51,13 @@ export const VideoHandler = (props: Props) => {
 						autoPlay={true}
 					/>
 				</div>
-			)}
-			<input type='file' accept='video/*' onChange={handleInputChange}/>
+			)
+				: (
+					<div className={'video-input-container'}>
+						<input type='file' accept='video/*' onChange={handleInputChange}/>
+					</div>
+				)
+			}
 		</>
 	);
 };

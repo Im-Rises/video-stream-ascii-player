@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './VideoController.scss';
 
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
@@ -33,7 +34,8 @@ const VideoController = (props: Props) => {
 
 	return (
 		<div className={'video-ascii-panel-controls'}>
-			<button onClick={togglePausePlay}>Play/Pause</button>
+			<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current?.paused}
+				onChange={togglePausePlay}/>
 			<input type='range' value={props.videoRef.current?.currentTime} onChange={handleVideoCursorChange} min={0}
 				max={props.videoRef.current?.duration}/>
 			<button onClick={() => {
@@ -53,29 +55,29 @@ const VideoController = (props: Props) => {
 			}
 			}>Skip ahead
 			</button>
-			<div>
+			<span>
 				<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.loop}
 					onChange={() => {
 						props.videoRef.current!.loop = !props.videoRef.current!.loop;
 					}}
 				/>
 				<label className='checkbox-label'>Loop</label>
-			</div>
-			<div>
+			</span>
+			<span>
 				<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.muted}
 					onChange={() => {
 						props.videoRef.current!.muted = !props.videoRef.current!.muted;
 					}}
 				/>
 				<label className='checkbox-label'>Mute</label>
-			</div>
-			<div>
+			</span>
+			<span>
 				<input type={'range'} min={0} max={1} step={0.01} value={props.videoRef.current!.volume}
 					onChange={e => {
 						props.videoRef.current!.volume = parseFloat(e.target.value);
 					}}/>
-			</div>
-			<div>
+			</span>
+			<span>
 				<select onChange={e => {
 					props.videoRef.current!.playbackRate = parseFloat(e.target.value);
 				}} value={props.videoRef.current!.playbackRate}>
@@ -85,8 +87,8 @@ const VideoController = (props: Props) => {
 					<option value={1.5}>1.5x</option>
 					<option value={2}>2x</option>
 				</select>
-			</div>
-			<div>
+			</span>
+			<span>
 				<select onChange={e => {
 					setSkipAheadBehindInterval(parseInt(e.target.value, 10));
 				}} value={skipAheadBehindInterval}>
@@ -95,16 +97,7 @@ const VideoController = (props: Props) => {
 					<option value={10}>10s</option>
 					<option value={30}>30s</option>
 				</select>
-			</div>
-
-			{/* <button onClick={() => { */}
-			{/*	videoRef.current!.pause(); */}
-			{/*	setIsVideoReady(false); */}
-			{/*	setVideoUrl(undefined); */}
-			{/*	videoRef.current!.src = ''; */}
-			{/* } */}
-			{/* }>Change video */}
-			{/* </button> */}
+			</span>
 		</div>
 	);
 };
