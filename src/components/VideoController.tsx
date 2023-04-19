@@ -53,10 +53,6 @@ const VideoController = (props: Props) => {
 			}
 			}>Skip ahead
 			</button>
-			<button type={'button'} onClick={() => {
-				props.videoRef.current!.loop = !props.videoRef.current!.loop;
-			}}>Auto replay
-			</button>
 			<div>
 				<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.loop}
 					onChange={() => {

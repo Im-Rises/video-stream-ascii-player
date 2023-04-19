@@ -20,8 +20,9 @@ export const VideoAsciiPanel: React.FC = () => {
 
 	// On video ready
 	const onCanPlay = () => {
-		setIsVideoReady(true);
 		setCharsPerColumn(calculateCharsPerColumn(videoRef.current!));
+		setIsVideoReady(true);
+		console.log('Video ready');
 	};
 
 	const onTimeUpdate = () => {
@@ -35,7 +36,7 @@ export const VideoAsciiPanel: React.FC = () => {
 					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} onTimeUpdate={onTimeUpdate}/>
 					<div ref={divVideoAsciiParentRef} className={'video-ascii-panel'}>
 						{isVideoReady
-                            ?? (
+                            && (
                             	<div>
                             		<div>
                             			<VideoAscii videoStreaming={videoRef.current!}
