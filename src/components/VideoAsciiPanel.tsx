@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
-import VideoAscii from 'video-stream-ascii';
+import {VideoAscii, ArtTypeEnum} from 'video-stream-ascii';
 import VideoController from './VideoController';
+import CopyImage from '../images/copy.svg';
 import './VideoAsciiPanel.scss';
 import {VideoHandler} from './VideoHandler';
 
@@ -46,8 +47,9 @@ export const VideoAsciiPanel: React.FC = () => {
 			{
 				<div>
 					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} onTimeUpdate={onTimeUpdate}/>
-					<div ref={divVideoAsciiParentRef} className={'video-ascii-panel'}>
-						{isVideoReady && (
+
+					{isVideoReady && (
+						<div ref={divVideoAsciiParentRef} className={'video-ascii-panel'}>
 							<div>
 								<div>
 									<VideoAscii videoStreaming={videoRef.current!}
@@ -56,19 +58,22 @@ export const VideoAsciiPanel: React.FC = () => {
 										charsPerColumn={charsPerColumn}
 										fontColor={'white'}
 										backgroundColor={'black'}
-										useColor={useColor}
+										artType={useColor ? ArtTypeEnum.ASCII_COLOR_BG_IMAGE : ArtTypeEnum.ASCII}
 										preTagRef={preTagRef}
 									/>
 								</div>
 								<div>
 									<VideoController videoRef={videoRef}/>
 								</div>
-								<button className={'video-button-color'} onClick={() => {
-									setUseColor(!useColor);
-								}}>Toggle color
+								<button
+									className={`${'Button-Toggle-Mode'} ${useColor ? 'Button-Toggle-BW' : 'Button-Toggle-Color'}`}
+									onClick={() => {
+										setUseColor(!useColor);
+									}}>
 								</button>
-								<button className={'video-button-copy'}
-									onClick={async () => copyToClipboard(preTagRef.current!.innerText)}>Copy
+								<button className={'Button-Copy-Clipboard'}
+									onClick={async () => copyToClipboard(preTagRef.current!.innerText)}>
+									<img src={CopyImage} alt={'CopyLogoImage'}/>
 								</button>
 								{/* <button onClick={() => { */}
 								{/*	videoRef.current!.pause(); */}
@@ -78,9 +83,9 @@ export const VideoAsciiPanel: React.FC = () => {
 								{/* }>Change video */}
 								{/* </button> */}
 							</div>
-						)
-						}
-					</div>
+						</div>
+					)
+					}
 				</div>
 			}
 		</div>
