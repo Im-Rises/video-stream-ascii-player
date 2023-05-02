@@ -3,7 +3,6 @@ import './VideoController.scss';
 
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
-	// currentTime: number;
 };
 
 const VideoController = (props: Props) => {
@@ -19,7 +18,6 @@ const VideoController = (props: Props) => {
 
 	const handleVideoCursorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseInt(e.target.value, 10);
-		// setCurrentTime(value);
 		if (props.videoRef.current) {
 			props.videoRef.current.currentTime = value;
 		}
@@ -28,16 +26,19 @@ const VideoController = (props: Props) => {
 	const moveVideoCursor = (offset: number) => {
 		if (props.videoRef.current) {
 			props.videoRef.current.currentTime += offset;
-			// setCurrentTime(videoRef.current.currentTime + offset);
 		}
 	};
 
 	return (
-		<div className={'video-ascii-panel-controls'}>
+		<div className={'video-controller-panel'}>
 			<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current?.paused}
 				onChange={togglePausePlay}/>
 			<input type='range' value={props.videoRef.current?.currentTime} onChange={handleVideoCursorChange} min={0}
 				max={props.videoRef.current?.duration}/>
+			<button onClick={() => {
+				moveVideoCursor(-skipAheadBehindInterval);
+			}}>Skip behind
+			</button>
 			<button onClick={() => {
 				moveVideoCursor(-frameTime);
 			}}>Previous frame
@@ -45,10 +46,6 @@ const VideoController = (props: Props) => {
 			<button onClick={() => {
 				moveVideoCursor(Number(frameTime));
 			}}>Next frame
-			</button>
-			<button onClick={() => {
-				moveVideoCursor(-skipAheadBehindInterval);
-			}}>Skip behind
 			</button>
 			<button onClick={() => {
 				moveVideoCursor(skipAheadBehindInterval);
