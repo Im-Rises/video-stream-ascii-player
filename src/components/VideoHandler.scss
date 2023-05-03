@@ -1,8 +1,50 @@
-.video-input-container {
-  width: 100vw;
-  height: 100vh;
+.app-title {
+  height: 20vh;
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #000;
+  justify-content: center;
+  color: #ffffff;
+  margin: 0 0 0 0;
+}
+
+.video-input-container {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  //input {
+  //  width: 50%;
+  //  height: 5vh;
+  //  font-size: 1.5em;
+  //  border-radius: 0.5em;
+  //  border: 0.1em solid #ffffff;
+  //  padding: 0.5em;
+  //  color: #ffffff;
+  //  background: transparent;
+  //  outline: none;
+  //}
+
+  button {
+    width: 10%;
+    //height: 5vh;
+    font-size: 1.5em;
+    border-radius: 0.5em;
+    border: 0.1em solid #ffffff;
+    padding: 0.5em;
+    color: #ffffff;
+    background: transparent;
+    outline: none;
+    font-style: italic;
+
+    &:hover {
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+    }
+
+
+  }
 }

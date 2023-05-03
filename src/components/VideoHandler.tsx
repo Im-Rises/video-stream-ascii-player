@@ -1,14 +1,20 @@
-import React, {useState} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
 import './VideoHandler.scss';
 
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
 	onCanPlay: () => void;
-	onTimeUpdate: () => void;
+	autoPlay?: boolean;
 };
 
-export const VideoHandler = (props: Props) => {
+export type VideoHandlerRef = {
+	ejectVideo: () => void;
+};
+
+export const VideoHandler = forwardRef((props: Props, ref) => {
+	const inputRef = React.useRef<HTMLInputElement>(null);
 	const [videoUrl, setVideoUrl] = useState<string | undefined>(undefined);
+	const autoPlay = props.autoPlay ?? true;
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -19,6 +25,12 @@ export const VideoHandler = (props: Props) => {
 		setVideoUrl(URL.createObjectURL(file));
 	};
 
+	useImperativeHandle(ref, () => ({
+		ejectVideo() {
+			setVideoUrl(undefined);
+		},
+	}));
+
 	return (
 		<>
 			{videoUrl ? (
@@ -28,36 +40,26 @@ export const VideoHandler = (props: Props) => {
 						onCanPlay={() => {
 							props.onCanPlay();
 						}}
-						// onChange={
-						// 	e => {
-						// 		console.log('videoRef.current', props.videoRef.current);
-						// 	}
-						// }
-						// onPlay={() => {
-						// 	console.log('Hide resume button');
-						// }}
-						// onPause={() => {
-						// 	console.log('Show resume button');
-						// }}
-						// onEnded={() => {
-						// 	props.onTimeUpdate();
-						// }}
-						// onChangeCapture={() => {
-						// 	console.log('New video cursor', props.videoRef.current?.currentTime);
-						// }}
-						onTimeUpdate={() => {
-							props.onTimeUpdate();
-						}}
-						autoPlay={true}
+						autoPlay={autoPlay}
 					/>
 				</div>
 			)
 				: (
-					<div className={'video-input-container'}>
-						<input type='file' accept='video/*' onChange={handleInputChange}/>
-					</div>
+					<>
+						<h1 className={'app-title'}>Video ASCII Player</h1>
+						<div className={'video-input-container'}>
+							<input ref={inputRef} style={{display: 'none'}} type='file' accept='video/*'
+								onChange={handleInputChange}/>
+							<button className={'video-input-button'} onClick={() => {
+								inputRef.current?.click();
+							}}>Select video
+							</button>
+						</div>
+					</>
 				)
 			}
 		</>
 	);
-};
+});
+
+VideoHandler.displayName = 'VideoHandler';
