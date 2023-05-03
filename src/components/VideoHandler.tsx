@@ -34,9 +34,32 @@ export const VideoHandler = (props: Props) => {
 				</div>
 			)
 				: (
-					<div className={'video-input-container'}>
-						<input type='file' accept='video/*' onChange={handleInputChange}/>
-					</div>
+					<>
+						<h1 className={'app-title'}>Video ASCII Player</h1>
+						<div className={'video-input-container'}>
+							<input type='file' accept='video/*' onChange={handleInputChange}/>
+						</div>
+						{/* <h1 className={'app-title'}>Video ASCII Player</h1> */}
+						{/* <div className={'video-input-container'}> */}
+						{/*	/!* <h2>Upload a video</h2> *!/ */}
+						{/*	<input type='file' accept='video/*' onChange={handleInputChange}/> */}
+						{/* </div> */}
+						{/* <div className='container'> */}
+						{/*	<div className='card'> */}
+						{/*		<h3>Upload Files</h3> */}
+						{/*		<div className='drop_box'> */}
+						{/*			<header> */}
+						{/*				<h4>Select File here</h4> */}
+						{/*			</header> */}
+						{/*			<p>Files Supported: MP4, AVI, MOV, and WMV</p> */}
+						{/*			<input type='file' hidden accept='video/*' id='fileID' */}
+						{/*				style={{display: 'none'}} onChange={handleInputChange}/> */}
+						{/*			<button className='btn'>Choose File</button> */}
+						{/*		</div> */}
+
+						{/*	</div> */}
+						{/* </div> */}
+					</>
 				)
 			}
 		</>

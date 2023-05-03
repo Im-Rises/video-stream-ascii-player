@@ -9,6 +9,11 @@
 
 @mixin base-color-background {
   background: #d3d3d3;
+  opacity: 0.7;
+}
+
+@mixin base-color-background-hover {
+  opacity: 1;
 }
 
 /* Panel */
@@ -36,6 +41,10 @@
 
   .slider-video-volume {
     width: 20%;
+  }
+
+  .button-eject-video {
+    margin-left: 2em;
     margin-right: 1em;
   }
 }
@@ -179,5 +188,27 @@
     height: 2.25em;
     background: dimgray;
     cursor: pointer;
+  }
+}
+
+.button-eject-video {
+  position: relative;
+  width: 30px;
+  height: 30px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }

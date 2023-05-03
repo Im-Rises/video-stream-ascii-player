@@ -13,6 +13,7 @@ const VideoController = (props: Props) => {
 	const [currentTime, setCurrentTime] = useState(0);
 	const replayOnEnd = props.replayOnEnd ?? false;
 
+	/* On user video buttons events */
 	const togglePausePlay = async () => {
 		if (props.videoRef.current?.paused) {
 			await props.videoRef.current?.play();
@@ -28,6 +29,7 @@ const VideoController = (props: Props) => {
 		setIsMuted(props.videoRef.current!.muted);
 	};
 
+	/* On user video event */
 	const handleVideoCursorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseInt(e.target.value, 10);
 		if (props.videoRef.current) {
@@ -40,6 +42,7 @@ const VideoController = (props: Props) => {
 		setVolume(parseFloat(e.target.value));
 	};
 
+	/* Video events */
 	const onVideoEnded = async () => {
 		if (replayOnEnd) {
 			await props.videoRef.current?.play();
@@ -57,27 +60,6 @@ const VideoController = (props: Props) => {
 
 	props.videoRef.current?.addEventListener('timeupdate', onVideoTimeUpdate);
 
-	// let spaceBarDown = false;
-	// let isAwaiting = false;
-	//
-	// const onSpaceBarPress = async (e: KeyboardEvent) => {
-	// 	if (e.code === 'Space' && !spaceBarDown && !isAwaiting) {
-	// 		spaceBarDown = true;
-	// 		isAwaiting = true;
-	// 		await togglePausePlay();
-	// 		isAwaiting = false;
-	// 	}
-	// };
-	//
-	// const onSpaceBarRelease = (e: KeyboardEvent) => {
-	// 	if (e.code === 'Space') {
-	// 		spaceBarDown = false;
-	// 	}
-	// };
-	//
-	// document.addEventListener('keydown', onSpaceBarPress);
-	// document.addEventListener('keyup', onSpaceBarRelease);
-
 	return (
 		<div className={'video-controller-panel'}>
 			<button className={`button-play-pause ${isPaused ? '' : 'paused'}`}
@@ -93,6 +75,11 @@ const VideoController = (props: Props) => {
 					handleVolumeChange(e);
 				}}
 			/>
+			<button className={'button-eject-video'} onClick={() => {
+				// props.videoRef.current!.src = '';
+				// props.videoRef.current!.load();
+				// setIsPaused(true);
+			}}/>
 		</div>
 	);
 };
