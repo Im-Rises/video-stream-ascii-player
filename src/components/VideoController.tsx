@@ -10,6 +10,7 @@ const VideoController = (props: Props) => {
 	// const frameTime = 1 / 30;
 	// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
 	const [isPaused, setIsPaused] = useState(props.videoRef.current!.paused);
+	const [isMuted, setIsMuted] = useState(props.videoRef.current!.muted);
 	const [currentTime, setCurrentTime] = useState(0);
 	const replayOnEnd = props.replayOnEnd ?? false;
 
@@ -21,6 +22,11 @@ const VideoController = (props: Props) => {
 			props.videoRef.current?.pause();
 			setIsPaused(true);
 		}
+	};
+
+	const toggleMute = () => {
+		props.videoRef.current!.muted = !props.videoRef.current!.muted;
+		setIsMuted(props.videoRef.current!.muted);
 	};
 
 	const handleVideoCursorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,12 +92,7 @@ const VideoController = (props: Props) => {
 			{/*	<label className='checkbox-label'>Loop</label> */}
 			{/* </span> */}
 			<span>
-				<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.muted}
-					onChange={() => {
-						props.videoRef.current!.muted = !props.videoRef.current!.muted;
-					}}
-				/>
-				<label className='checkbox-label'>Mute</label>
+				<button className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></button>
 			</span>
 			<span>
 				<input type={'range'} min={0} max={1} step={0.01} value={props.videoRef.current!.volume}
