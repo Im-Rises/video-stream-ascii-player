@@ -146,6 +146,7 @@
   @include base-color;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  border-radius: 30%;
 
   &:hover {
     @include base-color-hover;
@@ -153,6 +154,7 @@
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
+    border-radius: 30%;
     appearance: none;
     width: 2.25em;
     height: 2.25em;
