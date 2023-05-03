@@ -7,10 +7,9 @@ type Props = {
 };
 
 const VideoController = (props: Props) => {
-	// const frameTime = 1 / 30;
-	// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
 	const [isPaused, setIsPaused] = useState(props.videoRef.current!.paused);
 	const [isMuted, setIsMuted] = useState(props.videoRef.current!.muted);
+	const [volume, setVolume] = useState(props.videoRef.current!.volume);
 	const [currentTime, setCurrentTime] = useState(0);
 	const replayOnEnd = props.replayOnEnd ?? false;
 
@@ -34,6 +33,11 @@ const VideoController = (props: Props) => {
 		if (props.videoRef.current) {
 			props.videoRef.current.currentTime = value;
 		}
+	};
+
+	const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		props.videoRef.current!.volume = parseFloat(e.target.value);
+		setVolume(parseFloat(e.target.value));
 	};
 
 	const onVideoEnded = async () => {
@@ -62,61 +66,64 @@ const VideoController = (props: Props) => {
 				onChange={handleVideoCursorChange} min={0}
 				max={props.videoRef.current?.duration}>
 			</input>
-			{/* <button onClick={() => { */}
-			{/*	moveVideoCursor(-skipAheadBehindInterval); */}
-			{/* }}>Skip behind */}
-			{/* </button> */}
-			{/* <button onClick={() => { */}
-			{/*	moveVideoCursor(-frameTime); */}
-			{/* }}>Previous frame */}
-			{/* </button> */}
-			{/* <button onClick={() => { */}
-			{/*	moveVideoCursor(Number(frameTime)); */}
-			{/* }}>Next frame */}
-			{/* </button> */}
-			{/* <button onClick={() => { */}
-			{/*	moveVideoCursor(skipAheadBehindInterval); */}
-			{/* } */}
-			{/* }>Skip ahead */}
-			{/* </button> */}
-			{/* <span> */}
-			{/*	<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.loop} */}
-			{/*		onChange={() => { */}
-			{/*			props.videoRef.current!.loop = !props.videoRef.current!.loop; */}
-			{/*		}} */}
-			{/*	/> */}
-			{/*	<label className='checkbox-label'>Loop</label> */}
-			{/* </span> */}
 			<a className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></a>
-			<span>
-				<input type={'range'} min={0} max={1} step={0.01} value={props.videoRef.current!.volume}
-					onChange={e => {
-						props.videoRef.current!.volume = parseFloat(e.target.value);
-					}}/>
-			</span>
-			{/* <span> */}
-			{/*	<select onChange={e => { */}
-			{/*		props.videoRef.current!.playbackRate = parseFloat(e.target.value); */}
-			{/*	}} value={props.videoRef.current!.playbackRate}> */}
-			{/*		<option value={0.25}>0.25x</option> */}
-			{/*		<option value={0.5}>0.5x</option> */}
-			{/*		<option value={1}>1x</option> */}
-			{/*		<option value={1.5}>1.5x</option> */}
-			{/*		<option value={2}>2x</option> */}
-			{/*	</select> */}
-			{/* </span> */}
-			{/* <span> */}
-			{/*	<select onChange={e => { */}
-			{/*		setSkipAheadBehindInterval(parseInt(e.target.value, 10)); */}
-			{/*	}} value={skipAheadBehindInterval}> */}
-			{/*		<option value={1}>1s</option> */}
-			{/*		<option value={5}>5s</option> */}
-			{/*		<option value={10}>10s</option> */}
-			{/*		<option value={30}>30s</option> */}
-			{/*	</select> */}
-			{/* </span> */}
+			<input type={'range'} min={0} max={1} step={0.01} value={volume}
+				onChange={e => {
+					handleVolumeChange(e);
+				}}
+			/>
 		</div>
 	);
 };
 
 export default VideoController;
+
+// const frameTime = 1 / 30;
+// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
+
+// {/* <button onClick={() => { */}
+// {/*	moveVideoCursor(-skipAheadBehindInterval); */}
+// {/* }}>Skip behind */}
+// {/* </button> */}
+// {/* <button onClick={() => { */}
+// {/*	moveVideoCursor(-frameTime); */}
+// {/* }}>Previous frame */}
+// {/* </button> */}
+// {/* <button onClick={() => { */}
+// {/*	moveVideoCursor(Number(frameTime)); */}
+// {/* }}>Next frame */}
+// {/* </button> */}
+// {/* <button onClick={() => { */}
+// {/*	moveVideoCursor(skipAheadBehindInterval); */}
+// {/* } */}
+// {/* }>Skip ahead */}
+// {/* </button> */}
+// {/* <span> */}
+// {/*	<input type={'checkbox'} className={'custom-checkbox'} checked={props.videoRef.current!.loop} */}
+// {/*		onChange={() => { */}
+// {/*			props.videoRef.current!.loop = !props.videoRef.current!.loop; */}
+// {/*		}} */}
+// {/*	/> */}
+// {/*	<label className='checkbox-label'>Loop</label> */}
+// {/* </span> */}
+// {/* <span> */}
+// {/*	<select onChange={e => { */}
+// {/*		props.videoRef.current!.playbackRate = parseFloat(e.target.value); */}
+// {/*	}} value={props.videoRef.current!.playbackRate}> */}
+// {/*		<option value={0.25}>0.25x</option> */}
+// {/*		<option value={0.5}>0.5x</option> */}
+// {/*		<option value={1}>1x</option> */}
+// {/*		<option value={1.5}>1.5x</option> */}
+// {/*		<option value={2}>2x</option> */}
+// {/*	</select> */}
+// {/* </span> */}
+// {/* <span> */}
+// {/*	<select onChange={e => { */}
+// {/*		setSkipAheadBehindInterval(parseInt(e.target.value, 10)); */}
+// {/*	}} value={skipAheadBehindInterval}> */}
+// {/*		<option value={1}>1s</option> */}
+// {/*		<option value={5}>5s</option> */}
+// {/*		<option value={10}>10s</option> */}
+// {/*		<option value={30}>30s</option> */}
+// {/*	</select> */}
+// {/* </span> */}
