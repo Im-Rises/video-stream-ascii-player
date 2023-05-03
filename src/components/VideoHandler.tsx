@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
 import './VideoHandler.scss';
 
 type Props = {
@@ -7,7 +7,12 @@ type Props = {
 	autoPlay?: boolean;
 };
 
-export const VideoHandler = (props: Props) => {
+export type VideoHandlerRef = {
+	ejectVideo: () => void;
+};
+
+export const VideoHandler = forwardRef((props: Props, ref) => {
+	const inputRef = React.useRef<HTMLInputElement>(null);
 	const [videoUrl, setVideoUrl] = useState<string | undefined>(undefined);
 	const autoPlay = props.autoPlay ?? true;
 
@@ -19,6 +24,12 @@ export const VideoHandler = (props: Props) => {
 
 		setVideoUrl(URL.createObjectURL(file));
 	};
+
+	useImperativeHandle(ref, () => ({
+		ejectVideo() {
+			setVideoUrl(undefined);
+		},
+	}));
 
 	return (
 		<>
@@ -37,31 +48,18 @@ export const VideoHandler = (props: Props) => {
 					<>
 						<h1 className={'app-title'}>Video ASCII Player</h1>
 						<div className={'video-input-container'}>
-							<input type='file' accept='video/*' onChange={handleInputChange}/>
+							<input ref={inputRef} style={{display: 'none'}} type='file' accept='video/*'
+								onChange={handleInputChange}/>
+							<button className={'video-input-button'} onClick={() => {
+								inputRef.current?.click();
+							}}>Select video
+							</button>
 						</div>
-						{/* <h1 className={'app-title'}>Video ASCII Player</h1> */}
-						{/* <div className={'video-input-container'}> */}
-						{/*	/!* <h2>Upload a video</h2> *!/ */}
-						{/*	<input type='file' accept='video/*' onChange={handleInputChange}/> */}
-						{/* </div> */}
-						{/* <div className='container'> */}
-						{/*	<div className='card'> */}
-						{/*		<h3>Upload Files</h3> */}
-						{/*		<div className='drop_box'> */}
-						{/*			<header> */}
-						{/*				<h4>Select File here</h4> */}
-						{/*			</header> */}
-						{/*			<p>Files Supported: MP4, AVI, MOV, and WMV</p> */}
-						{/*			<input type='file' hidden accept='video/*' id='fileID' */}
-						{/*				style={{display: 'none'}} onChange={handleInputChange}/> */}
-						{/*			<button className='btn'>Choose File</button> */}
-						{/*		</div> */}
-
-						{/*	</div> */}
-						{/* </div> */}
 					</>
 				)
 			}
 		</>
 	);
-};
+});
+
+VideoHandler.displayName = 'VideoHandler';

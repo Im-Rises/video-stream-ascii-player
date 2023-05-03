@@ -15,9 +15,21 @@
   align-items: center;
   justify-content: center;
 
-  input {
-    width: 50%;
-    height: 5vh;
+  //input {
+  //  width: 50%;
+  //  height: 5vh;
+  //  font-size: 1.5em;
+  //  border-radius: 0.5em;
+  //  border: 0.1em solid #ffffff;
+  //  padding: 0.5em;
+  //  color: #ffffff;
+  //  background: transparent;
+  //  outline: none;
+  //}
+
+  button {
+    width: 10%;
+    //height: 5vh;
     font-size: 1.5em;
     border-radius: 0.5em;
     border: 0.1em solid #ffffff;
@@ -25,5 +37,14 @@
     color: #ffffff;
     background: transparent;
     outline: none;
+    font-style: italic;
+
+    &:hover {
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+    }
+
+
   }
 }

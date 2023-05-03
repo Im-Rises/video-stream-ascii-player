@@ -3,10 +3,11 @@ import {VideoAscii, ArtTypeEnum} from 'video-stream-ascii';
 import VideoController from './VideoController';
 import CopyImage from '../images/copy.svg';
 import './VideoAsciiPanel.scss';
-import {VideoHandler} from './VideoHandler';
+import {VideoHandler, type VideoHandlerRef} from './VideoHandler';
 
 export const VideoAsciiPanel: React.FC = () => {
 	const divVideoAsciiParentRef = useRef<HTMLDivElement>(null);
+	const refVideoHandler = useRef<VideoHandlerRef>(null);
 	const preTagRef = useRef<HTMLPreElement>(null);
 
 	// Video settings
@@ -38,13 +39,14 @@ export const VideoAsciiPanel: React.FC = () => {
 	const onEjectVideo = () => {
 		setIsVideoReady(false);
 		videoRef.current!.src = '';
+		refVideoHandler.current!.ejectVideo();
 	};
 
 	return (
 		<div>
 			{
 				<div>
-					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay}/>
+					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} ref={refVideoHandler}/>
 					{isVideoReady && (
 						<>
 							<div className={'video-ascii-panel'}>
