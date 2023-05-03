@@ -6,13 +6,16 @@ type Props = {
 };
 
 const VideoController = (props: Props) => {
-	const frameTime = 1 / 30;
-	const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
+	// const frameTime = 1 / 30;
+	// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
+	const [isPaused, setIsPaused] = useState(false);
 	const togglePausePlay = async () => {
 		if (props.videoRef.current?.paused) {
 			await props.videoRef.current?.play();
+			setIsPaused(false);
 		} else {
 			props.videoRef.current?.pause();
+			setIsPaused(true);
 		}
 	};
 
@@ -23,16 +26,20 @@ const VideoController = (props: Props) => {
 		}
 	};
 
-	const moveVideoCursor = (offset: number) => {
-		if (props.videoRef.current) {
-			props.videoRef.current.currentTime += offset;
-		}
+	const onVideoEnded = () => {
+		setIsPaused(true);
 	};
+
+	// const moveVideoCursor = (offset: number) => {
+	// 	if (props.videoRef.current) {
+	// 		props.videoRef.current.currentTime += offset;
+	// 	}
+	// };
 
 	return (
 		<div className={'video-controller-panel'}>
 			{/* checked={props.videoRef.current?.paused} */}
-			<button className={'button-play-pause'}
+			<button className={`button-play-pause ${isPaused ? '' : 'paused'}`}
 				onClick={togglePausePlay}/>
 			<input type='range' value={props.videoRef.current?.currentTime} onChange={handleVideoCursorChange} min={0}
 				max={props.videoRef.current?.duration}/>
