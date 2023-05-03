@@ -23,7 +23,6 @@ export const VideoAsciiPanel: React.FC = () => {
 	const onCanPlay = () => {
 		setCharsPerColumn(calculateCharsPerColumn(videoRef.current!));
 		setIsVideoReady(true);
-		console.log('Video ready');
 	};
 
 	// Handle the copy to clipboard button click
@@ -34,6 +33,11 @@ export const VideoAsciiPanel: React.FC = () => {
 		} catch (err: unknown) {
 			console.error('Failed to copy text: ', err);
 		}
+	};
+
+	const onEjectVideo = () => {
+		setIsVideoReady(false);
+		videoRef.current!.src = '';
 	};
 
 	return (
@@ -57,7 +61,8 @@ export const VideoAsciiPanel: React.FC = () => {
 									/>
 								</div>
 								<div className={'video-ascii-controller-holder'}>
-									<VideoController videoRef={videoRef} replayOnEnd={false}/>
+									<VideoController videoRef={videoRef} replayOnEnd={false}
+										onEjectVideo={onEjectVideo}/>
 								</div>
 							</div>
 							<div>
