@@ -88,7 +88,7 @@ const VideoController = (props: Props) => {
 				max={props.videoRef.current?.duration}>
 			</input>
 			<a className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></a>
-			<input type={'range'} min={0} max={1} step={0.01} value={volume}
+			<input type={'range'} className={'slider-video-volume'} min={0} max={1} step={0.01} value={volume}
 				onChange={e => {
 					handleVolumeChange(e);
 				}}
