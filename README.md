@@ -79,17 +79,8 @@ ESLint:
 GitHub gh-pages:  
 <https://github.com/gitname/react-gh-pages>
 
-react-webcam:  
-<https://www.npmjs.com/package/react-webcam>
-
-<!--
-If not publishing anymore, replace the following line:
-    "deploy": "gh-pages -d build"
-with 
-    "deploy": "gh-pages-clean gh-pages -d build"
-then deploy one time and replace it with the original line again
-and deploy another time
--->
+css-tricks:  
+<https://css-tricks.com/making-pure-css-playpause-button/>
 
 ## Package Links
 
