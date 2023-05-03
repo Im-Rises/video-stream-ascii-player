@@ -7,6 +7,12 @@
   opacity: 1;
 }
 
+@mixin base-dimension {
+  width: 3em;
+  height: 3em;
+}
+
+/* Panel */
 .video-controller-panel {
   display: flex;
   flex-direction: row;
@@ -18,8 +24,7 @@
 
 /* Play Pause button */
 .button-play-pause {
-  height: 4em;
-  width: 4em;
+  @include base-dimension;
 
   background: transparent;
   box-sizing: border-box;
@@ -29,39 +34,30 @@
   cursor: pointer;
 
   border-style: solid;
-  border-width: 2em 0 2em 3em;
+  border-width: 1.5em 0 1.5em 2em;
 
   &.paused {
     border-style: double;
-    border-width: 0 0 0 3em;
+    border-width: 0 0 0 2em;
   }
 
   &:hover {
-    //border-color: transparent transparent transparent #404040;
     @include base-color-hover;
   }
 }
 
 /* Speaker */
 .speaker {
-  height: 30px;
-  width: 30px;
+  @include base-dimension;
+
   position: relative;
   overflow: hidden;
   display: inline-block;
 
-  //opacity: 0.7;
-  //border-color: transparent transparent transparent #d3d3d3;
   @include base-color;
 
   span {
     display: block;
-    width: 8px;
-    height: 8px;
-    //background: #fff;
-    //opacity: 0.7;
-    //border-color: transparent transparent transparent #d3d3d3;
-    margin: 11px 0 0 2px;
 
     &:after {
       content: '';
@@ -70,29 +66,30 @@
       height: 0;
       border-style: solid;
       border-color: transparent #fff transparent transparent;
-      border-width: 10px 14px 10px 15px;
-      left: -13px;
-      top: 5px;
+      border-width: 3em 4em 3em 4em;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     &:before {
       transform: rotate(45deg);
-      border-radius: 0 50px 0 0;
+      border-radius: 0 1em 0 0;
       content: '';
       position: absolute;
-      width: 5px;
-      height: 5px;
+      width: 0.7em;
+      height: 0.7em;
       border-style: double;
       border-color: #fff;
-      border-width: 7px 7px 0 0;
-      left: 18px;
-      top: 9px;
+      border-width: 0.4em 0.4em 0 0;
       transition: all 0.2s ease-out;
+      top: 30%;
+      left: 50%;
     }
   }
 
   &:hover {
-    //opacity: 1;
     @include base-color-hover;
 
     span:before {

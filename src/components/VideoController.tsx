@@ -57,6 +57,27 @@ const VideoController = (props: Props) => {
 
 	props.videoRef.current?.addEventListener('timeupdate', onVideoTimeUpdate);
 
+	// let spaceBarDown = false;
+	// let isAwaiting = false;
+	//
+	// const onSpaceBarPress = async (e: KeyboardEvent) => {
+	// 	if (e.code === 'Space' && !spaceBarDown && !isAwaiting) {
+	// 		spaceBarDown = true;
+	// 		isAwaiting = true;
+	// 		await togglePausePlay();
+	// 		isAwaiting = false;
+	// 	}
+	// };
+	//
+	// const onSpaceBarRelease = (e: KeyboardEvent) => {
+	// 	if (e.code === 'Space') {
+	// 		spaceBarDown = false;
+	// 	}
+	// };
+	//
+	// document.addEventListener('keydown', onSpaceBarPress);
+	// document.addEventListener('keyup', onSpaceBarRelease);
+
 	return (
 		<div className={'video-controller-panel'}>
 			<button className={`button-play-pause ${isPaused ? '' : 'paused'}`}
