@@ -60,17 +60,15 @@
     display: block;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
+      top: 0;
+      right: 0;
       width: 0;
       height: 0;
-      border-style: solid;
-      border-color: transparent #fff transparent transparent;
-      border-width: 3em 4em 3em 4em;
-
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      border-top: 50px solid transparent;
+      border-bottom: 50px solid transparent;
+      border-left: 100px solid #fff;
     }
 
     &:before {
