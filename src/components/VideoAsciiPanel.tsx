@@ -12,7 +12,7 @@ export const VideoAsciiPanel: React.FC = () => {
 	// Video settings
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isVideoReady, setIsVideoReady] = useState(false);
-	const [currentTime, setCurrentTime] = useState(0);
+	// const [currentTime, setCurrentTime] = useState(0);
 
 	// Video ascii settings
 	const charsPerLine = 100;
@@ -27,10 +27,10 @@ export const VideoAsciiPanel: React.FC = () => {
 		console.log('Video ready');
 	};
 
-	// On video time update
-	const onTimeUpdate = () => {
-		setCurrentTime(videoRef.current?.currentTime ?? 0);
-	};
+	// // On video time update
+	// const onTimeUpdate = () => {
+	// 	setCurrentTime(videoRef.current?.currentTime ?? 0);
+	// };
 
 	// Handle the copy to clipboard button click
 	const copyToClipboard = async (text: string) => {
@@ -46,7 +46,7 @@ export const VideoAsciiPanel: React.FC = () => {
 		<div>
 			{
 				<div>
-					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} onTimeUpdate={onTimeUpdate}/>
+					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay}/>
 					{isVideoReady && (
 						<>
 							<div className={'video-ascii-panel'}>

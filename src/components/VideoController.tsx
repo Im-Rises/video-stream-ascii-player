@@ -8,7 +8,9 @@ type Props = {
 const VideoController = (props: Props) => {
 	// const frameTime = 1 / 30;
 	// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
-	const [isPaused, setIsPaused] = useState(false);
+	const [isPaused, setIsPaused] = useState(props.videoRef.current!.paused);
+	const [currentTime, setCurrentTime] = useState(0);
+
 	const togglePausePlay = async () => {
 		if (props.videoRef.current?.paused) {
 			await props.videoRef.current?.play();
@@ -30,6 +32,14 @@ const VideoController = (props: Props) => {
 		setIsPaused(true);
 	};
 
+	props.videoRef.current?.addEventListener('ended', onVideoEnded);
+
+	const onVideoTimeUpdate = () => {
+		setCurrentTime(props.videoRef.current?.currentTime ?? 0);
+	};
+
+	props.videoRef.current?.addEventListener('timeupdate', onVideoTimeUpdate);
+
 	// const moveVideoCursor = (offset: number) => {
 	// 	if (props.videoRef.current) {
 	// 		props.videoRef.current.currentTime += offset;
@@ -41,7 +51,7 @@ const VideoController = (props: Props) => {
 			{/* checked={props.videoRef.current?.paused} */}
 			<button className={`button-play-pause ${isPaused ? '' : 'paused'}`}
 				onClick={togglePausePlay}/>
-			<input type='range' value={props.videoRef.current?.currentTime} onChange={handleVideoCursorChange} min={0}
+			<input type='range' value={currentTime} onChange={handleVideoCursorChange} min={0}
 				max={props.videoRef.current?.duration}/>
 			{/* <button onClick={() => { */}
 			{/*	moveVideoCursor(-skipAheadBehindInterval); */}

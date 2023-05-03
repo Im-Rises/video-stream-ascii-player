@@ -4,11 +4,12 @@ import './VideoHandler.scss';
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
 	onCanPlay: () => void;
-	onTimeUpdate: () => void;
+	autoPlay?: boolean;
 };
 
 export const VideoHandler = (props: Props) => {
 	const [videoUrl, setVideoUrl] = useState<string | undefined>(undefined);
+	const autoPlay = props.autoPlay ?? true;
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -28,27 +29,7 @@ export const VideoHandler = (props: Props) => {
 						onCanPlay={() => {
 							props.onCanPlay();
 						}}
-						// onChange={
-						// 	e => {
-						// 		console.log('videoRef.current', props.videoRef.current);
-						// 	}
-						// }
-						// onPlay={() => {
-						// 	console.log('Hide resume button');
-						// }}
-						// onPause={() => {
-						// 	console.log('Show resume button');
-						// }}
-						// onEnded={() => {
-						// 	props.onTimeUpdate();
-						// }}
-						// onChangeCapture={() => {
-						// 	console.log('New video cursor', props.videoRef.current?.currentTime);
-						// }}
-						onTimeUpdate={() => {
-							props.onTimeUpdate();
-						}}
-						autoPlay={true}
+						autoPlay={autoPlay}
 					/>
 				</div>
 			)
