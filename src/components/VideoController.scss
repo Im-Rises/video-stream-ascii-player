@@ -93,13 +93,13 @@
     @include base-color-hover;
 
     span:before {
-      transform: scale(.8) translate(-3px, 0) rotate(42deg);
+      transform: scale(.8) translate(-0.2em, 0) rotate(42deg);
     }
   }
 
   &.mute {
     span:before {
-      transform: scale(.5) translate(-15px, 0) rotate(36deg);
+      transform: scale(.5) translate(-1em, 0) rotate(36deg);
       opacity: 0;
     }
   }
