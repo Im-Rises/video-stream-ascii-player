@@ -53,19 +53,15 @@ const VideoController = (props: Props) => {
 
 	props.videoRef.current?.addEventListener('timeupdate', onVideoTimeUpdate);
 
-	// const moveVideoCursor = (offset: number) => {
-	// 	if (props.videoRef.current) {
-	// 		props.videoRef.current.currentTime += offset;
-	// 	}
-	// };
-
 	return (
 		<div className={'video-controller-panel'}>
-			{/* checked={props.videoRef.current?.paused} */}
 			<button className={`button-play-pause ${isPaused ? '' : 'paused'}`}
 				onClick={togglePausePlay}/>
-			<input type='range' value={currentTime} onChange={handleVideoCursorChange} min={0}
-				max={props.videoRef.current?.duration}/>
+			<input type='range' className={'slider-video-position'}
+				value={currentTime}
+				onChange={handleVideoCursorChange} min={0}
+				max={props.videoRef.current?.duration}>
+			</input>
 			{/* <button onClick={() => { */}
 			{/*	moveVideoCursor(-skipAheadBehindInterval); */}
 			{/* }}>Skip behind */}
@@ -91,9 +87,7 @@ const VideoController = (props: Props) => {
 			{/*	/> */}
 			{/*	<label className='checkbox-label'>Loop</label> */}
 			{/* </span> */}
-			<span>
-				<button className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></button>
-			</span>
+			<a className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></a>
 			<span>
 				<input type={'range'} min={0} max={1} step={0.01} value={props.videoRef.current!.volume}
 					onChange={e => {
