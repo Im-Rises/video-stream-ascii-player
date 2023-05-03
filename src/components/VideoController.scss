@@ -7,11 +7,6 @@
   opacity: 1;
 }
 
-@mixin base-dimension {
-  width: 3em;
-  height: 3em;
-}
-
 /* Panel */
 .video-controller-panel {
   display: flex;
@@ -24,7 +19,8 @@
 
 /* Play Pause button */
 .button-play-pause {
-  @include base-dimension;
+  width: 3em;
+  height: 3em;
 
   background: transparent;
   box-sizing: border-box;
@@ -48,7 +44,8 @@
 
 /* Speaker */
 .speaker {
-  @include base-dimension;
+  width: 4em;
+  height: 3em;
 
   position: relative;
   overflow: hidden;
@@ -57,20 +54,30 @@
   @include base-color;
 
   span {
+    // Speaker square
     display: block;
+    //width: 8px;
+    //height: 8px;
+    width: 1em;
+    height: 1em;
+    background: #fff;
+    //margin: 11px 0 0 2px;
+    margin: 1em 0 0 0.2em;
 
+    // Speaker triangle
     &:after {
-      content: "";
+      content: '';
       position: absolute;
-      top: 0;
-      right: 0;
       width: 0;
       height: 0;
-      border-top: 50px solid transparent;
-      border-bottom: 50px solid transparent;
-      border-left: 100px solid #fff;
+      border-style: solid;
+      border-color: transparent #fff transparent transparent;
+      border-width: 1em 1.4em 1em 1.5em;
+      left: -1.3em;
+      top: 0.5em;
     }
 
+    // Waves
     &:before {
       transform: rotate(45deg);
       border-radius: 0 1em 0 0;
