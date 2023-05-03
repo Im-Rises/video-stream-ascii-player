@@ -3,6 +3,7 @@ import './VideoController.scss';
 
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
+	replayOnEnd?: boolean;
 };
 
 const VideoController = (props: Props) => {
@@ -10,6 +11,7 @@ const VideoController = (props: Props) => {
 	// const [skipAheadBehindInterval, setSkipAheadBehindInterval] = useState(5);
 	const [isPaused, setIsPaused] = useState(props.videoRef.current!.paused);
 	const [currentTime, setCurrentTime] = useState(0);
+	const replayOnEnd = props.replayOnEnd ?? false;
 
 	const togglePausePlay = async () => {
 		if (props.videoRef.current?.paused) {
@@ -28,8 +30,13 @@ const VideoController = (props: Props) => {
 		}
 	};
 
-	const onVideoEnded = () => {
-		setIsPaused(true);
+	const onVideoEnded = async () => {
+		if (replayOnEnd) {
+			await props.videoRef.current?.play();
+			setIsPaused(false);
+		} else {
+			setIsPaused(true);
+		}
 	};
 
 	props.videoRef.current?.addEventListener('ended', onVideoEnded);

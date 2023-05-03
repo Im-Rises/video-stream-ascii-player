@@ -63,7 +63,7 @@ export const VideoAsciiPanel: React.FC = () => {
 									/>
 								</div>
 								<div className={'video-ascii-controller-holder'}>
-									<VideoController videoRef={videoRef}/>
+									<VideoController videoRef={videoRef} replayOnEnd={false}/>
 								</div>
 							</div>
 							<div>
