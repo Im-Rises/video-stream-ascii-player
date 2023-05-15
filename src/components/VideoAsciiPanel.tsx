@@ -59,7 +59,6 @@ export const VideoAsciiPanel: React.FC = () => {
 										backgroundColor={'black'}
 										artType={useColor ? ArtTypeEnum.ASCII_COLOR_BG_IMAGE : ArtTypeEnum.ASCII}
 										preTagRef={preTagRef}
-										frameRate={30}
 									/>
 								</div>
 								<div className={'video-ascii-controller-holder'}>
