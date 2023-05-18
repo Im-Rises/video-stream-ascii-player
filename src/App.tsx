@@ -5,7 +5,7 @@ import {AUTHOR, GITHUB_LINK_TEXT, GITHUB_URL} from './constants/github-project-c
 import {VideoAsciiPanel} from './components/VideoAsciiPanel';
 
 const App = () => (
-	<div className='App'>
+	<div>
 		<GitHubProjectPanel link={GITHUB_URL} author={AUTHOR}/>
 		<VideoAsciiPanel/>
 	</div>
