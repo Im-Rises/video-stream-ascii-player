@@ -2,32 +2,32 @@ import React, {useState} from 'react';
 import './VideoController.scss';
 
 type Props = {
-	videoRef: React.RefObject<HTMLVideoElement>;
+	videoRef: HTMLVideoElement;
 	onEjectVideo: () => void;
 	replayOnEnd?: boolean;
 };
 
 const VideoController = (props: Props) => {
-	const [isPaused, setIsPaused] = useState(props.videoRef.current!.paused);
-	const [isMuted, setIsMuted] = useState(props.videoRef.current!.muted);
-	const [volume, setVolume] = useState(props.videoRef.current!.volume);
+	const [isPaused, setIsPaused] = useState(props.videoRef.paused);
+	const [isMuted, setIsMuted] = useState(props.videoRef.muted);
+	const [volume, setVolume] = useState(props.videoRef.volume);
 	const [currentTime, setCurrentTime] = useState(0);
 	const replayOnEnd = props.replayOnEnd ?? false;
 
 	/* On user video buttons events */
 	const togglePausePlay = async () => {
-		if (props.videoRef.current?.paused) {
-			await props.videoRef.current?.play();
+		if (props.videoRef.paused) {
+			await props.videoRef.play();
 			setIsPaused(false);
 		} else {
-			props.videoRef.current?.pause();
+			props.videoRef.pause();
 			setIsPaused(true);
 		}
 	};
 
 	const toggleMute = () => {
-		props.videoRef.current!.muted = !props.videoRef.current!.muted;
-		setIsMuted(props.videoRef.current!.muted);
+		props.videoRef.muted = !props.videoRef.muted;
+		setIsMuted(props.videoRef.muted);
 	};
 
 	const ejectVideo = () => {
@@ -37,33 +37,33 @@ const VideoController = (props: Props) => {
 	/* On user video event */
 	const handleVideoCursorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = parseInt(e.target.value, 10);
-		if (props.videoRef.current) {
-			props.videoRef.current.currentTime = value;
+		if (props.videoRef) {
+			props.videoRef.currentTime = value;
 		}
 	};
 
 	const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		props.videoRef.current!.volume = parseFloat(e.target.value);
+		props.videoRef.volume = parseFloat(e.target.value);
 		setVolume(parseFloat(e.target.value));
 	};
 
 	/* Video events */
 	const onVideoEnded = async () => {
 		if (replayOnEnd) {
-			await props.videoRef.current?.play();
+			await props.videoRef.play();
 			setIsPaused(false);
 		} else {
 			setIsPaused(true);
 		}
 	};
 
-	props.videoRef.current?.addEventListener('ended', onVideoEnded);
+	props.videoRef.addEventListener('ended', onVideoEnded);
 
 	const onVideoTimeUpdate = () => {
-		setCurrentTime(props.videoRef.current?.currentTime ?? 0);
+		setCurrentTime(props.videoRef.currentTime ?? 0);
 	};
 
-	props.videoRef.current?.addEventListener('timeupdate', onVideoTimeUpdate);
+	props.videoRef.addEventListener('timeupdate', onVideoTimeUpdate);
 
 	return (
 		<div className={'video-controller-panel'}>
@@ -72,7 +72,7 @@ const VideoController = (props: Props) => {
 			<input type='range' className={'slider-video-position'}
 				value={currentTime}
 				onChange={handleVideoCursorChange} min={0}
-				max={props.videoRef.current?.duration}>
+				max={props.videoRef.duration}>
 			</input>
 			<a className={`speaker ${isMuted ? 'mute' : ''}`} onClick={toggleMute}><span></span></a>
 			<input type={'range'} className={'slider-video-volume'} min={0} max={1} step={0.01} value={volume}
