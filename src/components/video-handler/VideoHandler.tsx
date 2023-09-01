@@ -1,6 +1,4 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
-import GitHubProjectPanel from './GitHubProjectPanel';
-import {AUTHOR, GITHUB_LINK_TEXT, GITHUB_URL} from '../constants/github-project-constants';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import './VideoHandler.scss';
 
 type Props = {
@@ -57,7 +55,6 @@ export const VideoHandler = forwardRef((props: Props, ref) => {
 							}}>Select video
 							</button>
 						</div>
-						<GitHubProjectPanel link={GITHUB_URL} author={AUTHOR}/>
 					</>
 				)
 			}
