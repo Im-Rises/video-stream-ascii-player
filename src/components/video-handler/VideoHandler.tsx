@@ -63,7 +63,7 @@ export const VideoHandler = forwardRef((props: Props, ref) => {
 				)
 				: (
 					<>
-						<h1 className={'app-title'}>Image ASCII</h1>
+						<h1 className={'app-title'}>Video ASCII Player</h1>
 						<div className={'mode-selector-container'}>
 							<ModeResolutionSelector useAutoAspectRatio={useAutoAspectRatio}
 								setUseAutoAspectRatio={setUseAutoAspectRatio}/>

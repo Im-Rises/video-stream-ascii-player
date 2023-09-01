@@ -1,5 +1,54 @@
+//.app-title {
+//  height: 35vh;
+//  width: 100%;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  color: #ffffff;
+//  margin: 0 0 0 0;
+//}
+//
+//.video-input-container {
+//  height: 65vh;
+//  width: 100%;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//
+//  //input {
+//  //  width: 50%;
+//  //  height: 5vh;
+//  //  font-size: 1.5em;
+//  //  border-radius: 0.5em;
+//  //  border: 0.1em solid #ffffff;
+//  //  padding: 0.5em;
+//  //  color: #ffffff;
+//  //  background: transparent;
+//  //  outline: none;
+//  //}
+//
+//  button {
+//    //width: 10%;
+//    //height: 5vh;
+//    font-size: 1.5em;
+//    border-radius: 0.5em;
+//    border: 0.1em solid #ffffff;
+//    padding: 0.5em;
+//    color: #ffffff;
+//    background: transparent;
+//    outline: none;
+//    font-style: italic;
+//
+//    &:hover {
+//      background: #ffffff;
+//      color: #000000;
+//      cursor: pointer;
+//    }
+//  }
+//}
+
 .app-title {
-  height: 35vh;
+  height: 15vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -8,41 +57,54 @@
   margin: 0 0 0 0;
 }
 
-.video-input-container {
-  height: 65vh;
+.mode-selector-container {
+  height: 20vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 0 0 0;
+}
 
-  //input {
-  //  width: 50%;
-  //  height: 5vh;
-  //  font-size: 1.5em;
-  //  border-radius: 0.5em;
-  //  border: 0.1em solid #ffffff;
-  //  padding: 0.5em;
-  //  color: #ffffff;
-  //  background: transparent;
-  //  outline: none;
-  //}
+.image-input-container {
+  height: 65vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 0;
 
-  button {
-    //width: 10%;
-    //height: 5vh;
-    font-size: 1.5em;
-    border-radius: 0.5em;
-    border: 0.1em solid #ffffff;
-    padding: 0.5em;
-    color: #ffffff;
-    background: transparent;
-    outline: none;
-    font-style: italic;
+  .image-settings {
+    height: 55%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 
-    &:hover {
-      background: #ffffff;
+  .image-input-button {
+    height: 45%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    button {
+      background-color: #ffffff;
       color: #000000;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: dimgray;
+        color: #ffffff;
+      }
     }
   }
 }
