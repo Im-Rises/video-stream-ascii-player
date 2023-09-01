@@ -9,6 +9,8 @@ import {ManualResolutionSelector} from './resolution-parameters/ManualResolution
 type Props = {
 	videoRef: React.RefObject<HTMLVideoElement>;
 	onCanPlay: () => void;
+	setCharsPerLine: (charsPerLine: number) => void;
+	setCharsPerColumn: (charsPerColumn: number) => void;
 	autoPlay?: boolean;
 };
 
@@ -29,8 +31,11 @@ export const VideoHandler = forwardRef((props: Props, ref) => {
 	const [manualCharsPerColumn, setManualCharsPerColumn] = useState(90);
 
 	// Settings to calculate the chars per line/column based on the image aspect ratio and a selected line/column base
-	const [autoResolutionBase, setAutoResolutionBase] = useState(200);
+	const [autoResolutionBase, setAutoResolutionBase] = useState(100);
 	const [useLineBase, setUseLineBase] = useState(true);
+
+	const calculateCharsPerLine = (video: HTMLVideoElement) => Math.round(autoResolutionBase * (video.videoWidth / video.videoHeight));
+	const calculateCharsPerColumn = (video: HTMLVideoElement) => Math.round(autoResolutionBase * (video.videoHeight / video.videoWidth));
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -55,6 +60,14 @@ export const VideoHandler = forwardRef((props: Props, ref) => {
 						<video ref={props.videoRef} src={videoUrl}
 							style={{width: 0, height: 0, position: 'absolute', top: 0, left: 0}}
 							onCanPlay={() => {
+								if (useAutoAspectRatio) {
+									props.setCharsPerLine(useLineBase ? autoResolutionBase : calculateCharsPerLine(props.videoRef.current!));
+									props.setCharsPerColumn(useLineBase ? calculateCharsPerColumn(props.videoRef.current!) : autoResolutionBase);
+								} else {
+									props.setCharsPerLine(manualCharsPerLine);
+									props.setCharsPerColumn(manualCharsPerColumn);
+								}
+
 								props.onCanPlay();
 							}}
 							autoPlay={autoPlay}

@@ -13,13 +13,11 @@ export const VideoAsciiPanel: React.FC = () => {
 	const [isVideoReady, setIsVideoReady] = useState(false);
 
 	// Video ascii settings
-	const charsPerLine = 100;
+	const [charsPerLine, setCharsPerLine] = useState(100);
 	const [charsPerColumn, setCharsPerColumn] = useState(0);
-	const calculateCharsPerColumn = (video: HTMLVideoElement) => Math.round(charsPerLine * (video.videoHeight / video.videoWidth));
 
 	// On video ready
 	const onCanPlay = () => {
-		setCharsPerColumn(calculateCharsPerColumn(videoRef.current!));
 		setIsVideoReady(true);
 	};
 
@@ -33,7 +31,8 @@ export const VideoAsciiPanel: React.FC = () => {
 		<div>
 			{
 				<div>
-					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} ref={refVideoHandler}/>
+					<VideoHandler videoRef={videoRef} onCanPlay={onCanPlay} ref={refVideoHandler}
+						setCharsPerLine={setCharsPerLine} setCharsPerColumn={setCharsPerColumn}/>
 					{isVideoReady
 						? (
 							<VideoViewPanel videoRef={videoRef.current!} charsPerLine={charsPerLine}
