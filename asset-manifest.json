@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/video-stream-ascii-player/static/css/main.3647e557.css",
+    "main.js": "/video-stream-ascii-player/static/js/main.d8b01c1d.js",
+    "static/js/496.a596c608.chunk.js": "/video-stream-ascii-player/static/js/496.a596c608.chunk.js",
+    "static/media/github.svg": "/video-stream-ascii-player/static/media/github.255db585f8a0eb28a1e4deb91bde207d.svg",
+    "index.html": "/video-stream-ascii-player/index.html",
+    "static/media/copy.svg": "/video-stream-ascii-player/static/media/copy.dcb6bf73de369d114f61833d940384c1.svg",
+    "main.3647e557.css.map": "/video-stream-ascii-player/static/css/main.3647e557.css.map",
+    "main.d8b01c1d.js.map": "/video-stream-ascii-player/static/js/main.d8b01c1d.js.map",
+    "496.a596c608.chunk.js.map": "/video-stream-ascii-player/static/js/496.a596c608.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3647e557.css",
+    "static/js/main.d8b01c1d.js"
+  ]
+}
